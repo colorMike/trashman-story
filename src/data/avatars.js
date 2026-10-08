@@ -1874,7 +1874,7 @@ export const AVATARS = [
   {
     "id": "Doc",
     "name": "Doctor",
-    "category": "Base",
+    "category": "Professions",
     "spriteLength": 2,
     "idle": [
       [

@@ -27,15 +27,13 @@
     sack.alt = '';
     const txt = document.createElement('div');
     txt.className = 'trashman-text';
-    txt.innerHTML = '<strong>TRASHMAN STORY</strong><span>is feeding the datakraken on this tab</span>' +
-      (info.keyword ? `<em>${escapeHtml(info.keyword)}</em>` : '');
+    const strong = document.createElement('strong'); strong.textContent = 'TRASHMAN STORY';
+    const span = document.createElement('span'); span.textContent = 'is feeding the datakraken on this tab';
+    txt.append(strong, span);
+    if (info.keyword) { const em = document.createElement('em'); em.textContent = info.keyword; txt.append(em); }
     box.append(sack, txt);
     (document.body || document.documentElement).append(box);
     document.title = 'TRASHMAN STORY – ' + document.title;
-  }
-
-  function escapeHtml(s) {
-    return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   }
 
   // A few lazy scrolls so the page looks "read" and lazy-loaded trackers fire.

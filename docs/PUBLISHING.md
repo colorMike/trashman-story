@@ -1,60 +1,58 @@
 # Publishing the extension
 
+Firefox first. Chrome is secondary and optional.
+
 ## 0. Before the first upload
 
-1. Check the font licences (`src/fonts/README.md`). Replace the fonts if needed.
-2. Replace `homepage_url` in `src/manifest.json` and the "MORE INFO" links with
-   the real repository or website.
-3. Decide on a support e-mail address; both stores require one.
-4. Create the screenshots listed in `store/screenshots/README.md`.
-5. Bump the version in `src/manifest.json` and `package.json`, update
-   `CHANGELOG.md`, run `npm test && npm run build`.
+1. Bump the version in `src/manifest.json` and `package.json`, update `CHANGELOG.md`.
+2. `npm test && npm run build && npm run lint:amo` must be clean.
+3. Screenshots are in `store/screenshots/` (regenerate after UI changes, see
+   `store/screenshots/README.md`).
+4. Have a support e-mail address ready; AMO requires one.
 
-## 1. Chrome Web Store (also serves Edge, Brave, Opera, Vivaldi users)
+## 1. Firefox Add-ons (addons.mozilla.org, "AMO")
 
-1. Register a developer account at https://chrome.google.com/webstore/devconsole
-   (one-time fee of 5 USD).
-2. "New item" → upload `dist/trashmanstory-chrome-<version>.zip`.
-3. Store listing: copy the texts from `store/listing-en.md` / `store/listing-de.md`.
-   Category: *Productivity* or *Privacy & Security*. Language: English + German.
-4. Privacy practices tab: single purpose = "obfuscate advertising profiles by
-   visiting websites". Justify each permission with the table in `PRIVACY.md`.
-   Host permissions trigger an in-depth review; expect a few days.
-   Declare: no remote code, no user data collected.
-5. Privacy policy URL: publish `PRIVACY.md` (for example via GitHub Pages).
-6. Submit for review. Reviews for extensions with broad host permissions take
-   1 to 7 days.
+1. Developer account: https://addons.mozilla.org/developers/ (free).
+2. *Submit a New Add-on* → *On this site* → upload
+   `dist/trashmanstory-firefox-<version>.zip`.
+3. The zip is the source (no build step, no minification), so no separate
+   source upload is needed. Say so in *Notes to Reviewer*:
+   "Plain ES modules, no bundler. Automated browsing happens only in a pinned
+   tab the extension opens itself and marks with a banner. No data leaves the
+   browser."
+4. Listing: texts from `store/listing-de.md` and `store/listing-en.md`,
+   category *Privacy & Security*, licence MIT, privacy policy = contents of
+   `PRIVACY.md`, screenshots from `store/screenshots/`.
+5. Data collection: the manifest already declares
+   `data_collection_permissions: required: ["none"]`; pick "none" in the form too.
+6. Submit. Listed add-ons with broad host permissions get a human review,
+   typically a few days. Once approved, users install with one click and
+   updates are automatic.
 
-Possible objection: automated browsing can be read as "deceptive behaviour".
-Be explicit in the description that the extension opens its own tab, shows a
-banner there and only acts in that tab. Both AdNauseam and TrackMeNot were
-rejected by Google at some point; Firefox is the safe harbour.
+Self-distribution alternative: choose *On your own* instead, download the
+signed `.xpi` and attach it to a GitHub release. Users can install it from the
+file without AMO listing.
 
-## 2. Firefox Add-ons (AMO)
+Local checks before upload:
 
-1. Account at https://addons.mozilla.org/developers/
-2. Submit `dist/trashmanstory-firefox-<version>.zip` ("On this site").
-3. AMO reviewers read the source. There is no build step, so the zip is the
-   source. Mention that in the "Notes to reviewer".
-4. Same listing texts. Firefox users are the core target group of this project.
+    npm run lint:amo
+    npx web-ext run --source-dir=dist/firefox-src --firefox=/Applications/Firefox.app/Contents/MacOS/firefox
 
-Optional: validate locally with Mozilla's tool
+## 2. GitHub release
 
-    npx web-ext lint --source-dir=src
+    git tag v2.0.0 && git push --tags
 
-## 3. Microsoft Edge Add-ons
+The release workflow runs the tests and attaches both zips to a GitHub release.
 
-Same zip as Chrome. https://partner.microsoft.com/dashboard/microsoftedge – free.
+## 3. Chrome Web Store (optional)
 
-## 4. GitHub release
+Developer account at https://chrome.google.com/webstore/devconsole (one-time
+5 USD). Upload `dist/trashmanstory-chrome-<version>.zip`, same listing texts,
+justify each permission with the table in `PRIVACY.md`, publish `PRIVACY.md`
+at a public URL. Expect a longer review; Google has removed comparable
+extensions (AdNauseam) in the past. Edge Add-ons accept the same zip for free.
 
-Push a tag (`git tag v2.0.0 && git push --tags`). The release workflow builds
-both zips and attaches them to a GitHub release. Users can install the zip
-manually via "Load unpacked" (Chrome) or "Install Add-on From File" (Firefox,
-needs signing by AMO for permanent installation).
+## 4. After launch
 
-## 5. After launch
-
-* Watch the ad-profile pages linked in the options page to collect
-  before/after screenshots for the press kit.
+* Collect before/after screenshots of ad-profile pages for the press kit.
 * Keyword lists are the thing that gets old. Schedule a yearly refresh.

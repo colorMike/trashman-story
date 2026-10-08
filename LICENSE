@@ -29,5 +29,5 @@ avatar artwork in src/images and the fonts in src/fonts are NOT covered by it:
 
 * Artwork and logo: (c) Michael Sedlmeier & Julian Empl. May be redistributed
   together with this extension; any other use needs their permission.
-* Fonts (Mixtape Mike, Rooney Sans): commercial typefaces. See
-  src/fonts/README.md before redistributing.
+* Fonts: Permanent Marker (Apache 2.0) and Nunito (SIL OFL 1.1), see
+  src/fonts/README.md.

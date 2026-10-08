@@ -12,14 +12,22 @@ Trashman Story does not hide you. It fights back.
 
 ## Install
 
-**From source (now):**
+Firefox is the primary target. Chrome, Edge and Brave are supported but we
+do not plan to fight Google's review process for an extension whose job is to
+annoy Google.
 
-1. Clone this repository.
-2. Chrome / Edge / Brave: open `chrome://extensions`, enable *Developer mode*,
-   click *Load unpacked* and choose the `src` folder.
-3. Firefox: open `about:debugging#/runtime/this-firefox`, *Load Temporary
-   Add-on…*, choose `src/manifest.json`. (Firefox needs the event-page
-   manifest for a permanent install; `npm run build:firefox` produces it.)
+**Firefox, from the release zip:** download `trashmanstory-firefox-<version>.zip`
+from the [releases](https://github.com/colorMike/trashman-story/releases), open
+`about:addons`, gear icon, *Install Add-on From File…*. (Until the add-on is
+signed by Mozilla this only works in Firefox Developer Edition / Nightly with
+`xpinstall.signatures.required = false`, or as a temporary add-on below.)
+
+**Firefox, from source:** `npm run build`, then open
+`about:debugging#/runtime/this-firefox`, *Load Temporary Add-on…*, and choose
+`dist/firefox-src/manifest.json`. Allow access to websites when the popup asks.
+
+**Chrome / Edge / Brave, from source:** open `chrome://extensions`, enable
+*Developer mode*, *Load unpacked*, choose the `src` folder.
 
 **From a store:** see [docs/PUBLISHING.md](docs/PUBLISHING.md).
 
@@ -57,14 +65,18 @@ Details in [src/lib/engine.js](src/lib/engine.js), which is pure and tested.
 ```bash
 npm test          # unit tests for the engine (node:test, no dependencies)
 npm run lint      # syntax check all scripts + validate manifest
-npm run build     # dist/trashmanstory-chrome-<v>.zip and -firefox-<v>.zip
+npm run build     # dist/trashmanstory-firefox-<v>.zip, -chrome-<v>.zip and dist/firefox-src/
+npm run lint:amo  # Mozilla's add-on linter (web-ext) on the Firefox build
 ```
+
+Tested end-to-end in headless Firefox 156 and Chrome for Testing 151
+(install, activate, search, harvest links, follow links, banner, stop).
 
 Layout:
 
 ```
 src/
-  manifest.json        MV3 (Chrome); build.sh derives the Firefox variant
+  manifest.json        MV3; build.sh derives the Firefox variant (event page, add-on id)
   background.js        service worker: scheduling, tab, stats
   content.js/.css      banner + link harvesting inside the Trashman tab
   lib/engine.js        pure logic: keywords, seeds, link filter, pacing, stats

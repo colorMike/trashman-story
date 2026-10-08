@@ -1,16 +1,20 @@
-# Screenshots needed for the stores
+# Store screenshots
 
-Chrome Web Store: 1280x800 or 640x400 PNG/JPEG, at least one, up to five.
-Firefox AMO: any size, PNG, up to ten. Also a 128x128 icon (exists) and
-optionally a 1400x560 promo tile (Chrome).
+| File | Size | Shows |
+|------|------|-------|
+| 01-popup.png | 768x512 | popup, three outfits, switch ON, pages visited |
+| 02-picker.png | 768x512 | outfit picker |
+| 03-tab.png | 1280x800 | the Trashman tab on a shop page with the banner |
+| 04-options.png | 1280x800 | settings and stats page |
 
-Suggested set:
+AMO accepts PNGs of any size (max 4 MB each, up to ten). Chrome wants
+1280x800 or 640x400, so for a Chrome listing pad the two popup shots.
 
-1. `01-popup.png` – the popup with three outfits selected and the switch ON.
-2. `02-picker.png` – the outfit picker grid.
-3. `03-tab.png` – the Trashman tab on a shop page with the banner in the corner.
-4. `04-options.png` – settings and stats page after a day of use.
-5. `05-proof.png` – Google "My Ad Center" showing the outfit topics as interests.
+Still missing and only you can take it: `05-proof.png`, your Google
+*My Ad Center* (https://myadcenter.google.com/) after a few days of use,
+showing the outfit topics as interests. That is the one picture that sells
+the extension.
 
-How to take them: load the unpacked extension, set the browser zoom to 100 %,
-use the OS screenshot tool, crop to the stated size.
+Regenerate 01-04 after UI changes: load the extension in Chrome for Testing
+or Firefox, set outfits Bavaria / Nerd / Cook, switch ON, wait half a minute,
+then screenshot the popup, the picker, the pinned tab and the options page.

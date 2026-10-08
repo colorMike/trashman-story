@@ -4,7 +4,7 @@
 
 Complete rewrite of the 2015 FH Salzburg prototype.
 
-* Manifest V3, works in Chrome, Edge, Brave and Firefox (121+).
+* Manifest V3, Firefox 142+ first, also Chrome, Edge and Brave.
 * No jQuery, no build step, plain ES modules.
 * Pages are found by generic link harvesting instead of scraping Google's
   `#main` element, so layout changes no longer break the plugin.
@@ -19,7 +19,8 @@ Complete rewrite of the 2015 FH Salzburg prototype.
 * Stats: per day, per outfit, per start site, last pages, plus links to the
   Google / Facebook / Amazon ad-profile pages to verify the effect.
 * Keyword lists cleaned (encoding, typos, duplicates) and extended to 726.
-* Unit tests for the engine, GitHub Actions for test and release zips.
+* Unit tests for the engine, Mozilla add-on linter, GitHub Actions for test and release zips.
+* Free fonts (Permanent Marker, Nunito) instead of the commercial ones from 2015.
 
 ## 1.0.1 – 2015
 

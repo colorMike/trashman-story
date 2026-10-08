@@ -21,9 +21,15 @@ function renderEngines() {
   }
 }
 
+function row(cells) {
+  const tr = document.createElement('tr');
+  for (const c of cells) { const td = document.createElement('td'); td.textContent = c; tr.append(td); }
+  return tr;
+}
+
 function fill(table, obj, labelOf = k => k) {
   const rows = Object.entries(obj || {}).sort((a, b) => b[1] - a[1]);
-  table.innerHTML = rows.length ? rows.map(([k, v]) => `<tr><td>${labelOf(k)}</td><td>${v}</td></tr>`).join('') : '<tr><td>nothing yet</td><td></td></tr>';
+  table.replaceChildren(...(rows.length ? rows.map(([k, v]) => row([labelOf(k), v])) : [row(['nothing yet', ''])]));
 }
 
 function renderStats(state) {
@@ -33,7 +39,15 @@ function renderStats(state) {
   $('#st-since').textContent = s.startedAt ? new Date(s.startedAt).toLocaleDateString() : '–';
   fill($('#st-avatars'), s.perAvatar, k => (AVATAR_MAP[k]?.name || k).toUpperCase());
   fill($('#st-engines'), s.perEngine, k => ENGINES[k]?.label || k);
-  $('#st-recent').innerHTML = (s.recent || []).map(v => `<li><a href="${v.url}" target="_blank">${v.url}</a> <small>(${v.avatar} · ${v.keyword})</small></li>`).join('') || '<li>nothing yet</li>';
+  const items = (s.recent || []).map(v => {
+    const li = document.createElement('li');
+    const a = document.createElement('a'); a.href = v.url; a.target = '_blank'; a.textContent = v.url;
+    const small = document.createElement('small'); small.textContent = ` (${v.avatar} · ${v.keyword})`;
+    li.append(a, small);
+    return li;
+  });
+  if (!items.length) { const li = document.createElement('li'); li.textContent = 'nothing yet'; items.push(li); }
+  $('#st-recent').replaceChildren(...items);
 }
 
 async function load() {

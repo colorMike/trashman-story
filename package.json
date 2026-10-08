@@ -7,7 +7,8 @@
   "scripts": {
     "test": "node --test test/",
     "lint": "node scripts/check.js",
-    "build": "sh scripts/build.sh",
+    "build": "sh scripts/build.sh all",
+    "lint:amo": "npx --yes web-ext lint --source-dir=dist/firefox-src --no-input",
     "build:chrome": "sh scripts/build.sh chrome",
     "build:firefox": "sh scripts/build.sh firefox"
   },

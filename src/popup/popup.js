@@ -85,12 +85,26 @@ async function chooseAvatar(id) {
 }
 
 // --- wiring
+const ORIGINS = { origins: ['http://*/*', 'https://*/*'] };
+
+/** Firefox treats host permissions as optional: ask for them from the click. Chrome grants them at install. */
+async function ensureHostAccess() {
+  try {
+    if (await api.permissions.contains(ORIGINS)) return true;
+    return await api.permissions.request(ORIGINS);
+  } catch { return true; }
+}
+
 $('#switch').addEventListener('click', async () => {
+  if (!state.active && !(await ensureHostAccess())) {
+    $('#status-text').textContent = 'The Trashmen need access to websites to work. Please allow it.';
+    return;
+  }
   await send({ type: 'setActive', active: !state.active });
   refresh();
 });
 $('#visit-now').addEventListener('click', async () => {
-  if (!state.active) await send({ type: 'setActive', active: true });
+  if (!state.active) { if (!(await ensureHostAccess())) return; await send({ type: 'setActive', active: true }); }
   else await send({ type: 'visitNow' });
   setTimeout(refresh, 800);
 });

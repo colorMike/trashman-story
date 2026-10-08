@@ -16,7 +16,7 @@ input[type=number]:focus { outline: none; border-color: var(--teal); }
 .engines label { flex-direction: row; align-items: center; background: #1a1a1a; padding: 8px 12px; border-radius: 8px; border: 1px solid #4a4a4a; }
 .stats { display: flex; gap: 12px; margin-bottom: 8px; }
 .tile { flex: 1; background: #1a1a1a; border-radius: 10px; padding: 14px; text-align: center; }
-.tile b { display: block; font-family: "MixtapeMike", Impact, sans-serif; font-size: 34px; color: var(--white); }
+.tile b { display: block; font-family: "Marker", Impact, sans-serif; font-size: 34px; color: var(--white); }
 .tile span { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
 .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
 table { width: 100%; border-collapse: collapse; font-size: 13px; }

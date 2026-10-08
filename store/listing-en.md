@@ -31,5 +31,5 @@ Trashman Story started as a master project at the University of Applied
 Sciences Salzburg, Multimedia Technology, in 2014. This is version 2.
 
 **Category:** Privacy & Security
-**Website:** https://github.com/trashmanstory/trashmanstory-extension
+**Website:** https://github.com/colorMike/trashman-story
 **Support:** GitHub issues

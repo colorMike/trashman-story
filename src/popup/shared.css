@@ -1,6 +1,7 @@
-@font-face { font-family: "MixtapeMike"; src: url("../fonts/MixtapeMike.otf") format("opentype"); }
-@font-face { font-family: "RooneySansBold"; src: url("../fonts/rooneySansBold.otf") format("opentype"); }
-@font-face { font-family: "RooneySansLightItalic"; src: url("../fonts/rooneySansLightItalic.otf") format("opentype"); }
+/* Free fonts: Permanent Marker (Apache 2.0) replaces Mixtape Mike, Nunito (OFL) replaces Rooney Sans. */
+@font-face { font-family: "Marker"; src: url("../fonts/PermanentMarker-Regular.ttf") format("truetype"); }
+@font-face { font-family: "Nunito"; src: url("../fonts/Nunito.ttf") format("truetype"); font-weight: 200 1000; font-style: normal; }
+@font-face { font-family: "Nunito"; src: url("../fonts/Nunito-Italic.ttf") format("truetype"); font-weight: 200 1000; font-style: italic; }
 
 :root {
   --bg: #1f1f1f;
@@ -13,17 +14,17 @@
   --white: #ffffff;
 }
 * { box-sizing: border-box; }
-body { margin: 0; background: var(--bg); color: var(--text); font-family: "RooneySansBold", "Helvetica Neue", Arial, sans-serif; }
+body { margin: 0; background: var(--bg); color: var(--text); font-family: "Nunito", "Helvetica Neue", Arial, sans-serif; font-weight: 700; }
 a { color: var(--teal); text-decoration: none; }
 a:hover { text-decoration: underline; }
 button, .btn {
-  font-family: "RooneySansBold", Arial, sans-serif; font-size: 13px; letter-spacing: .5px;
+  font-family: "Nunito", Arial, sans-serif; font-weight: 800; font-size: 13px; letter-spacing: .5px;
   background: var(--teal); color: var(--white); border: 0; border-radius: 8px; padding: 7px 14px; cursor: pointer;
 }
 button:hover, .btn:hover { background: var(--teal-dark); text-decoration: none; }
 button.ghost { background: transparent; color: var(--muted-2); border: 1px solid #555; }
 button.ghost:hover { border-color: var(--teal); color: var(--white); }
-h1, h2, h3 { font-family: "MixtapeMike", Impact, sans-serif; font-weight: normal; letter-spacing: 1px; margin: 0; }
+h1, h2, h3 { font-family: "Marker", Impact, sans-serif; font-weight: normal; letter-spacing: 1px; margin: 0; }
 
 /* sprite avatar */
 .sprite { width: 200px; height: 200px; background-repeat: no-repeat; background-size: 200px auto; image-rendering: auto; }

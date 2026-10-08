@@ -1,14 +1,11 @@
 # Fonts
 
-| File | Typeface | Status |
-|------|----------|--------|
-| MixtapeMike.otf | Mixtape Mike | commercial / licence must be checked |
-| rooneySansBold.otf | Rooney Sans Bold (Jan Fromm) | commercial / licence must be checked |
-| rooneySansLightItalic.otf | Rooney Sans Light Italic | commercial / licence must be checked |
+| File | Typeface | Licence |
+|------|----------|---------|
+| PermanentMarker-Regular.ttf | Permanent Marker (Font Diner) | Apache 2.0, see LICENSE-PermanentMarker.txt |
+| Nunito.ttf, Nunito-Italic.ttf | Nunito variable (Vernon Adams, Cyreal) | SIL Open Font License 1.1, see OFL-Nunito.txt |
 
-These files were part of the 2015 plugin build. Before the extension is
-published in a store or the repository goes public, confirm that the licences
-allow embedding in a free, redistributable browser extension. If not, replace
-them with free alternatives (for example "Bangers" or "Permanent Marker" for
-the headline font and "Nunito" or "Source Sans 3" for the text font) and
-update `src/popup/shared.css`.
+Both come from https://github.com/google/fonts and may be embedded and
+redistributed freely. They replace the commercial Mixtape Mike and Rooney Sans
+of the 2015 build; the headline typography inside `images/page/concept.png`
+is artwork and unaffected.
