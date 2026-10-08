@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Trashman Story – Settings</title>
+  <link rel="icon" href="../images/icon/favicon.png">
+  <link rel="stylesheet" href="../popup/shared.css">
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <img src="../images/page/trashmanstory.png" alt="">
+      <div><h1>SETTINGS &amp; STATS</h1><p>How your Trashmen behave.</p></div>
+    </header>
+
+    <section>
+      <h2>BEHAVIOUR</h2>
+      <div class="grid">
+        <label>Pause between pages, min (seconds)<input type="number" id="minDelaySec" min="5" max="3600"></label>
+        <label>Pause between pages, max (seconds)<input type="number" id="maxDelaySec" min="6" max="7200"></label>
+        <label>Daily limit (pages)<input type="number" id="dailyLimit" min="10" max="100000"></label>
+        <label>Pages per site before moving on<input type="number" id="maxHopsPerDomain" min="1" max="20"></label>
+        <label class="check"><input type="checkbox" id="onlyWhenActive"> Only surf while I am using the computer</label>
+      </div>
+    </section>
+
+    <section>
+      <h2>WHERE THE TRASHMEN START</h2>
+      <p class="muted">Every topic starts with a search on one of these sites. Shops are the juiciest targets for retargeting ads.</p>
+      <div id="engines" class="engines"></div>
+    </section>
+
+    <section>
+      <h2>STATS</h2>
+      <div class="stats">
+        <div class="tile"><b id="st-total">0</b><span>pages total</span></div>
+        <div class="tile"><b id="st-today">0</b><span>pages today</span></div>
+        <div class="tile"><b id="st-since">–</b><span>running since</span></div>
+      </div>
+      <div class="cols">
+        <div><h3>PER OUTFIT</h3><table id="st-avatars"></table></div>
+        <div><h3>PER START SITE</h3><table id="st-engines"></table></div>
+      </div>
+      <h3>LAST PAGES</h3>
+      <ul id="st-recent"></ul>
+      <button id="reset" class="ghost">RESET STATS</button>
+    </section>
+
+    <section>
+      <h2>CHECK IF IT WORKS</h2>
+      <p class="muted">Open your ad profile and watch the outfits appear as "interests":
+        <a href="https://myadcenter.google.com/" target="_blank">Google My Ad Center</a> ·
+        <a href="https://www.facebook.com/adpreferences/ad_topics" target="_blank">Facebook Ad Topics</a> ·
+        <a href="https://www.amazon.de/adprefs" target="_blank">Amazon Ad Preferences</a>
+      </p>
+    </section>
+
+    <p id="saved" class="saved" hidden>Saved.</p>
+  </div>
+  <script type="module" src="options.js"></script>
+</body>
+</html>

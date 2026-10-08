@@ -1,0 +1,49 @@
+{
+  "manifest_version": 3,
+  "name": "__MSG_appName__",
+  "short_name": "Trashman Story",
+  "version": "2.0.0",
+  "description": "__MSG_appDescription__",
+  "default_locale": "en",
+  "author": "Michael Sedlmeier, Julian Empl",
+  "homepage_url": "https://github.com/trashmanstory/trashmanstory-extension",
+  "icons": {
+    "16": "images/icon/icon-16.png",
+    "32": "images/icon/icon-32.png",
+    "48": "images/icon/icon-48.png",
+    "128": "images/icon/icon-128.png"
+  },
+  "action": {
+    "default_icon": {
+      "16": "images/icon/icon-16.png",
+      "32": "images/icon/icon-32.png"
+    },
+    "default_title": "Trashman Story",
+    "default_popup": "popup/popup.html"
+  },
+  "options_ui": {
+    "page": "options/options.html",
+    "open_in_tab": true
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+  "permissions": ["storage", "tabs", "alarms", "idle"],
+  "host_permissions": ["http://*/*", "https://*/*"],
+  "web_accessible_resources": [
+    {
+      "resources": ["images/icon/sack.png", "images/icon/favicon.png", "fonts/*"],
+      "matches": ["http://*/*", "https://*/*"]
+    }
+  ]
+}

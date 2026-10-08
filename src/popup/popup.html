@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Trashman Story</title>
+  <link rel="stylesheet" href="shared.css">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body id="popup">
+  <main id="stage">
+    <div id="switch" title="Start / stop the Trashmen">
+      <span class="on">ON</span>
+      <span class="off">OFF</span>
+    </div>
+
+    <section id="status">
+      <div class="row"><span id="status-text">Trashmen are sleeping.</span></div>
+      <div class="row small"><span id="status-today">0</span> pages today · <span id="status-total">0</span> total · last keyword: <em id="status-keyword">–</em></div>
+    </section>
+
+    <ul id="recent">
+      <li><a href="#" target="_blank"></a></li>
+      <li><a href="#" target="_blank"></a></li>
+      <li><a href="#" target="_blank"></a></li>
+    </ul>
+
+    <div id="slots">
+      <div class="slot" data-slot="0"><div class="sprite" id="avatar-0"></div></div>
+      <div class="slot" data-slot="1"><div class="sprite" id="avatar-1"></div></div>
+      <div class="slot" data-slot="2"><div class="sprite" id="avatar-2"></div></div>
+    </div>
+    <div id="names">
+      <button class="name" data-slot="0"><span class="label"></span><span class="hint">change outfit</span></button>
+      <button class="name" data-slot="1"><span class="label"></span><span class="hint">change outfit</span></button>
+      <button class="name" data-slot="2"><span class="label"></span><span class="hint">change outfit</span></button>
+    </div>
+
+    <footer>
+      <button id="visit-now" class="ghost" title="Visit the next page right now">FEED NOW</button>
+      <a id="open-options" class="btn ghost" href="../options/options.html" target="_blank">SETTINGS &amp; STATS</a>
+      <a class="btn ghost" href="https://github.com/trashmanstory/trashmanstory-extension" target="_blank">MORE INFO</a>
+    </footer>
+  </main>
+
+  <section id="picker" hidden>
+    <header>
+      <h2>PICK AN OUTFIT FOR SLOT <span id="picker-slot">1</span></h2>
+      <button id="picker-close" class="ghost">CLOSE</button>
+    </header>
+    <div id="picker-grid"></div>
+  </section>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

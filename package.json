@@ -1,0 +1,16 @@
+{
+  "name": "trashmanstory-extension",
+  "version": "2.0.0",
+  "description": "Trashman Story – a browser extension that feeds advertising trackers with data trash.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/",
+    "lint": "node scripts/check.js",
+    "build": "sh scripts/build.sh",
+    "build:chrome": "sh scripts/build.sh chrome",
+    "build:firefox": "sh scripts/build.sh firefox"
+  },
+  "engines": { "node": ">=20" },
+  "license": "MIT"
+}

@@ -1,0 +1,30 @@
+@font-face { font-family: "MixtapeMike"; src: url("../fonts/MixtapeMike.otf") format("opentype"); }
+@font-face { font-family: "RooneySansBold"; src: url("../fonts/rooneySansBold.otf") format("opentype"); }
+@font-face { font-family: "RooneySansLightItalic"; src: url("../fonts/rooneySansLightItalic.otf") format("opentype"); }
+
+:root {
+  --bg: #1f1f1f;
+  --bg-2: #303030;
+  --teal: #34a2a8;
+  --teal-dark: #257e83;
+  --text: #e5e5e5;
+  --muted: #8f8f8f;
+  --muted-2: #bcbab9;
+  --white: #ffffff;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); font-family: "RooneySansBold", "Helvetica Neue", Arial, sans-serif; }
+a { color: var(--teal); text-decoration: none; }
+a:hover { text-decoration: underline; }
+button, .btn {
+  font-family: "RooneySansBold", Arial, sans-serif; font-size: 13px; letter-spacing: .5px;
+  background: var(--teal); color: var(--white); border: 0; border-radius: 8px; padding: 7px 14px; cursor: pointer;
+}
+button:hover, .btn:hover { background: var(--teal-dark); text-decoration: none; }
+button.ghost { background: transparent; color: var(--muted-2); border: 1px solid #555; }
+button.ghost:hover { border-color: var(--teal); color: var(--white); }
+h1, h2, h3 { font-family: "MixtapeMike", Impact, sans-serif; font-weight: normal; letter-spacing: 1px; margin: 0; }
+
+/* sprite avatar */
+.sprite { width: 200px; height: 200px; background-repeat: no-repeat; background-size: 200px auto; image-rendering: auto; }
+.sprite.small { width: 70px; height: 70px; background-size: 70px auto; }

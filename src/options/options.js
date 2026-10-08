@@ -1,0 +1,66 @@
+import { ENGINES } from '../lib/engine.js';
+import { AVATAR_MAP } from '../data/avatars.js';
+
+const api = typeof browser !== 'undefined' ? browser : chrome;
+const $ = s => document.querySelector(s);
+const send = msg => new Promise(r => api.runtime.sendMessage(msg, r));
+const NUM = ['minDelaySec', 'maxDelaySec', 'dailyLimit', 'maxHopsPerDomain'];
+
+let settings;
+
+function renderEngines() {
+  const box = $('#engines');
+  box.innerHTML = '';
+  for (const [id, e] of Object.entries(ENGINES)) {
+    const l = document.createElement('label');
+    const c = document.createElement('input');
+    c.type = 'checkbox'; c.value = id; c.checked = settings.engines.includes(id);
+    c.addEventListener('change', save);
+    l.append(c, document.createTextNode(' ' + e.label));
+    box.append(l);
+  }
+}
+
+function fill(table, obj, labelOf = k => k) {
+  const rows = Object.entries(obj || {}).sort((a, b) => b[1] - a[1]);
+  table.innerHTML = rows.length ? rows.map(([k, v]) => `<tr><td>${labelOf(k)}</td><td>${v}</td></tr>`).join('') : '<tr><td>nothing yet</td><td></td></tr>';
+}
+
+function renderStats(state) {
+  const s = state.stats || {};
+  $('#st-total').textContent = s.total || 0;
+  $('#st-today').textContent = s.today || 0;
+  $('#st-since').textContent = s.startedAt ? new Date(s.startedAt).toLocaleDateString() : '–';
+  fill($('#st-avatars'), s.perAvatar, k => (AVATAR_MAP[k]?.name || k).toUpperCase());
+  fill($('#st-engines'), s.perEngine, k => ENGINES[k]?.label || k);
+  $('#st-recent').innerHTML = (s.recent || []).map(v => `<li><a href="${v.url}" target="_blank">${v.url}</a> <small>(${v.avatar} · ${v.keyword})</small></li>`).join('') || '<li>nothing yet</li>';
+}
+
+async function load() {
+  const r = await send({ type: 'getState' });
+  settings = r.settings;
+  for (const k of NUM) $('#' + k).value = settings[k];
+  $('#onlyWhenActive').checked = !!settings.onlyWhenActive;
+  renderEngines();
+  renderStats(r.state);
+}
+
+async function save() {
+  const next = {};
+  for (const k of NUM) next[k] = Number($('#' + k).value) || settings[k];
+  if (next.maxDelaySec <= next.minDelaySec) next.maxDelaySec = next.minDelaySec + 1;
+  next.onlyWhenActive = $('#onlyWhenActive').checked;
+  next.engines = [...document.querySelectorAll('#engines input:checked')].map(c => c.value);
+  if (!next.engines.length) next.engines = ['google'];
+  const r = await send({ type: 'setSettings', settings: next });
+  settings = r.settings;
+  for (const k of NUM) $('#' + k).value = settings[k];
+  const saved = $('#saved'); saved.hidden = false; setTimeout(() => { saved.hidden = true; }, 1200);
+}
+
+for (const k of NUM) $('#' + k).addEventListener('change', save);
+$('#onlyWhenActive').addEventListener('change', save);
+$('#reset').addEventListener('click', async () => { await send({ type: 'resetStats' }); load(); });
+api.runtime.onMessage.addListener(msg => { if (msg?.type === 'stateChanged') renderStats(msg.state); });
+
+load();

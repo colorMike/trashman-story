@@ -1,0 +1,58 @@
+body#popup { width: 768px; height: 512px; overflow: hidden; }
+#stage {
+  position: relative; width: 768px; height: 512px;
+  background: var(--bg) url("../images/page/concept.png") no-repeat 0 0;
+}
+
+/* ON / OFF switch – top right, under the logo */
+#switch {
+  position: absolute; right: 22px; top: 150px; width: 60px; cursor: pointer; user-select: none;
+  font-size: 18px; text-align: right; line-height: 22px;
+}
+#switch span { display: block; color: var(--muted); transition: color .2s; }
+#switch .on::before, #switch .off::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 8px; background: #444; vertical-align: middle; }
+#stage.active #switch .on { color: var(--white); }
+#stage.active #switch .on::before { background: var(--teal); box-shadow: 0 0 10px var(--teal); }
+#stage:not(.active) #switch .off { color: var(--white); }
+#stage:not(.active) #switch .off::before { background: #c0392b; }
+
+/* status block under "Current Websites:" headline (which is part of the background image) */
+#status { position: absolute; left: 32px; top: 352px; width: 250px; font-size: 13px; line-height: 18px; color: var(--muted-2); }
+#status .small { font-size: 11px; color: var(--muted); }
+#status em { color: var(--teal); font-style: normal; }
+#stage.active #status-text { color: var(--teal); }
+
+/* the three teal dashes in the background sit at y = 408 / 428 / 448 */
+#recent { position: absolute; left: 60px; top: 399px; margin: 0; padding: 0; list-style: none; width: 230px; }
+#recent li { height: 20px; line-height: 20px; font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#recent a { color: var(--muted-2); font-family: "RooneySansLightItalic", Arial, sans-serif; }
+#recent a:hover { color: var(--white); }
+
+/* avatars, same positions as the 2015 plugin */
+#slots .slot { position: absolute; top: 142px; cursor: pointer; }
+#slots .slot[data-slot="0"] { left: 297px; z-index: 1; }
+#slots .slot[data-slot="1"] { left: 418px; z-index: 3; }
+#slots .slot[data-slot="2"] { left: 542px; z-index: 1; }
+#slots .slot:hover .sprite { filter: drop-shadow(0 0 10px var(--teal)); }
+
+#names { position: absolute; top: 346px; left: 300px; width: 440px; display: flex; justify-content: space-between; }
+#names .name { background: transparent; border: 0; padding: 4px 6px; width: 140px; text-align: center; color: var(--text); }
+#names .name:hover { background: rgba(255,255,255,.06); }
+#names .label { display: block; font-family: "MixtapeMike", Impact, sans-serif; font-size: 20px; letter-spacing: 1px; text-transform: uppercase; }
+#names .hint { display: block; font-size: 10px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
+
+footer { position: absolute; right: 24px; bottom: 22px; display: flex; gap: 8px; }
+footer .btn, footer button { font-size: 11px; padding: 6px 10px; }
+
+/* picker overlay */
+#picker { position: absolute; inset: 0; background: rgba(20,20,20,.97); padding: 20px 24px; overflow: auto; }
+#picker header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+#picker h2 { font-size: 26px; color: var(--white); }
+#picker h3 { font-size: 16px; color: var(--teal); margin: 14px 0 6px; letter-spacing: 2px; }
+#picker-grid .cat { display: flex; flex-wrap: wrap; gap: 6px; }
+#picker-grid .opt { width: 86px; padding: 4px; border-radius: 10px; border: 2px solid transparent; cursor: pointer; text-align: center; background: transparent; color: var(--muted-2); }
+#picker-grid .opt:hover { border-color: #555; background: rgba(255,255,255,.04); }
+#picker-grid .opt.selected { border-color: var(--teal); }
+#picker-grid .opt.taken { opacity: .35; cursor: not-allowed; }
+#picker-grid .opt .sprite { margin: 0 auto; }
+#picker-grid .opt span { display: block; font-size: 10px; text-transform: uppercase; letter-spacing: .5px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
