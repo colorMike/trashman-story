@@ -5,7 +5,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node --test test/",
+    "test": "node --test",
     "lint": "node scripts/check.js",
     "build": "sh scripts/build.sh all",
     "lint:amo": "npx --yes web-ext lint --source-dir=dist/firefox-src --no-input",
